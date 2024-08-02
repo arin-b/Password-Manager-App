@@ -12,7 +12,8 @@ npass = ""
 def find_password():
     website = website_input.get()
     try:
-        with open("/media/arindam/New Volume 1/pass_data.json", mode='r') as data_file:
+        # Update Path Here
+        with open("/media/arindam/New Volume 1/pass_data.json", mode='r') as data_file:  
             password_dict = json.load(data_file)
 
         email = password_dict.get(website, {}).get("email")
@@ -70,17 +71,20 @@ def add_password():
         is_ok = messagebox.askokcancel(title=website, message=f"Email: {email}\n Password: {password}\n Is it okay?")
         if is_ok:
             try:
-                with open("/media/arindam/New Volume 1/pass_data.json", mode='r') as data_file:
+                # Update Path Here
+                with open("/media/arindam/New Volume 1/pass_data.json", mode='r') as data_file: 
                     # Reading old data
                     data = json.load(data_file)
 
             except FileNotFoundError:
+                # Update Path Here
                 with open("/media/arindam/New Volume 1/pass_data.json", mode='w') as data_file:
                     # saving new data
                     json.dump(new_data, data_file, indent=4)
             else:
                 # Updating with new data
                 data.update(new_data)
+                # Update Path Here
                 with open("/media/arindam/New Volume 1/pass_data.json", mode='w') as data_file:
                     # saving new data
                     json.dump(data, data_file, indent=4)
@@ -97,6 +101,7 @@ window.title("Password Manager")
 window.config(padx=20, pady=20, bg='white')
 
 canvas = Canvas(width=200, height=200, bg='white', highlightthickness=0)
+# Update Path Here
 img = PhotoImage(file="logo.png")
 canvas.create_image(100, 94, image=img)
 canvas.grid(column=1, row=0)
